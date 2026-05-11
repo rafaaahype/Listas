@@ -1,7 +1,7 @@
 #ignorando executaveis
 main
 *.out
-*.exe 
-
+*.exe
+/output/*
 #ignorando objetos compilados
 *.o

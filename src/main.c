@@ -42,46 +42,8 @@ int main(void){
 
 			case 2:
    				printf("Digite o nome do Funcionário que deseja remover: ");
-    				char nomefuncioRemov[50];
-    				scanf("%49s", nomefuncioRemov);
-
-    				int posicao = -1;
-
-    				for(int i = 0; i < quantidadeDeFuncionarios; i++){
-        				if(strcmp(listaFuncionarios[i].nome, nomefuncioRemov) == 0){
-            					posicao = i;
-            					break;
-        				}
-    				}
-
-    				if(posicao == -1){
-					puts("Não achamos o Funcionário que deseja remover. ;p\n");
-        				break;
-    				}
-
-				for(int i = posicao; i < quantidadeDeFuncionarios - 1; i++){
-        				listaFuncionarios[i] = listaFuncionarios[i + 1];
-    				}
-
-    				quantidadeDeFuncionarios--;
-
-    				int novoTamanho;
-    				if(quantidadeDeFuncionarios > 0){
-        				novoTamanho = quantidadeDeFuncionarios;
-    				} else {
-        				novoTamanho = 1;
-    				}
-
-    				if(novoTamanho < quantidadeDeEspacos){
-        				FuncionarioDinamico *teste =
-            				realloc(listaFuncionarios, novoTamanho * sizeof(FuncionarioDinamico));
-
-        				if(teste != NULL){
-            					listaFuncionarios = teste;
-            					quantidadeDeEspacos = novoTamanho;
-        				}
-    				}
-    				printf("Funcionário removido com sucesso!\n\n");
+    			char nomefuncioRemov[50]; scanf("%49s", nomefuncioRemov);
+				removerFuncionario(&listaFuncionarios,&quantidadeDeFuncionarios,&quantidadeDeEspacos,nomefuncioRemov);
     		break;
 			
 			case 3:

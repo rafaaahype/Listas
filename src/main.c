@@ -1,6 +1,4 @@
 #include "../bibliotecas/listadinamica.h"
-#include <stdlib.h>
-#include <string.h>
 
 int quantidadeDeFuncionarios=0;
 int quantidadeDeEspacos=1;

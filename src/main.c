@@ -1,56 +1,101 @@
-#include "../bibliotecas/listaestatica.h"
+#include "../bibliotecas/listadinamica.h"
 #include <stdlib.h>
-#include <stdio.h>
 #include <string.h>
 
+int quantidadeDeFuncionarios=0;
+int quantidadeDeEspacos=1;
+
 int main(void){
-	int numFuncionarios;
-	printf("Digite o tamanho da lista de funcionarios: ");
-	scanf("%d", &numFuncionarios);
+	FuncionarioDinamico *listaFuncionarios = criarLista(quantidadeDeEspacos);
+	do{	
+		printf("O que você deseja fazer?\n");
+		printf("1- Adicionar Funcionário\n");
+		printf("2- Remover Funcionário\n");
+		printf("3- Exibir Lista de Funcionários\n");
+		printf("4- Sair do programa.\n");
+		int opcao; scanf("%d",&opcao);
+		switch(opcao){
+			case 1:
+			if(quantidadeDeFuncionarios>=quantidadeDeEspacos){
+				FuncionarioDinamico *teste = 
+					realloc(listaFuncionarios, (quantidadeDeEspacos+1)*sizeof(FuncionarioDinamico));
+				if(teste!=NULL){
+					quantidadeDeEspacos++;
+					listaFuncionarios = teste;
+				}else{
+					puts("DEU UM PROBLEMA NA REALOCAÇÃO DE MEMÓRIA ;(");
+					free(listaFuncionarios);
+					return 1;
+				}
+			}
+				printf("Digite o nome do Funcionário: ");
+				char nomefuncio[50]; scanf("%49s",nomefuncio);
+				printf("Digite o CPF do Funcionário: ");
+				char cpffuncio[13]; scanf("%12s",cpffuncio);
+				printf("Digite o Salário do Funcionário: ");
+				float salariofuncio; scanf("%f",&salariofuncio);
+				adicionarFuncionario(listaFuncionarios,quantidadeDeFuncionarios, 
+						nomefuncio,cpffuncio,salariofuncio);
+				quantidadeDeFuncionarios++;
+				printf("Funcionário adicionado com sucesso! :D\n\n\n");	
+			break;
 
-	Funcionario *listaFuncionarios = criar_lista(numFuncionarios);
+			case 2:
+   				printf("Digite o nome do Funcionário que deseja remover: ");
+    				char nomefuncioRemov[50];
+    				scanf("%49s", nomefuncioRemov);
 
-	Funcionario *func = (Funcionario*) malloc(sizeof(Funcionario));
+    				int posicao = -1;
 
-	for(int i=0; i<numFuncionarios; i++){
-		listaFuncionarios[i] = *func;
-		strcpy(listaFuncionarios[i].nome, "none"); 
-	}
-	
+    				for(int i = 0; i < quantidadeDeFuncionarios; i++){
+        				if(strcmp(listaFuncionarios[i].nome, nomefuncioRemov) == 0){
+            					posicao = i;
+            					break;
+        				}
+    				}
 
+    				if(posicao == -1){
+					puts("Não achamos o Funcionário que deseja remover. ;p\n");
+        				break;
+    				}
 
-	// strcpy(func.nome, "jeff");
-	// adicionar(listaFuncionarios, func, 0);
+				for(int i = posicao; i < quantidadeDeFuncionarios - 1; i++){
+        				listaFuncionarios[i] = listaFuncionarios[i + 1];
+    				}
 
+    				quantidadeDeFuncionarios--;
 
-	// Funcionario *listaFuncionarios = (Funcionario*) malloc(numFuncionarios * sizeof(Funcionario)); 
+    				int novoTamanho;
+    				if(quantidadeDeFuncionarios > 0){
+        				novoTamanho = quantidadeDeFuncionarios;
+    				} else {
+        				novoTamanho = 1;
+    				}
 
-	// if(listaFuncionarios){
-	// 	for(int i=0; i < numFuncionarios; i++){
-	// 		char nome[100], cpf[15];
-	// 		float salario;
-	// 		printf("Digite o nome do funcionario: ");
-	// 		scanf("%s", nome);
+    				if(novoTamanho < quantidadeDeEspacos){
+        				FuncionarioDinamico *teste =
+            				realloc(listaFuncionarios, novoTamanho * sizeof(FuncionarioDinamico));
 
-	// 		printf("Digite o cpf do funcionario: ");
-	// 		scanf("%s", cpf);
+        				if(teste != NULL){
+            					listaFuncionarios = teste;
+            					quantidadeDeEspacos = novoTamanho;
+        				}
+    				}
+    				printf("Funcionário removido com sucesso!\n\n");
+    		break;
 			
-	// 		printf("Digite o salario do funcionario: ");
-	// 		scanf("%f", &salario);
-
-	// 		Funcionario funcionario;
-	// 		strcpy(funcionario.nome, nome);
-	// 		strcpy(funcionario.cpf, cpf);
-	// 		funcionario.salario = salario;
-
-	// 		listaFuncionarios[i] = funcionario;
-	// 	}
-
-	// 	for(int i=0; i < numFuncionarios; i++){
-	// 		printf("%s \n",listaFuncionarios[i].nome);
-	// 		printf("%s \n",listaFuncionarios[i].cpf);
-	// 		printf("%.2f \n",listaFuncionarios[i].salario);
-	// 	}
-	// }
+			case 3:
+				printf("LISTA DE FUNCIONÁRIOS: \n");
+				exibirListaFuncionarios(listaFuncionarios, quantidadeDeFuncionarios);
+				printf("\n\n");
+			break;
+			
+			case 4:
+				printf("\nFIM DA EXECUÇÃO.\n");
+				free(listaFuncionarios);
+				return 0;
+			break;
+		}
+	}while(1);
 	return 0;
 }

@@ -1,10 +1,11 @@
-#ifndef LISTAENCADEADA_H_INCLUDED
-#define LISTAENCADEADA_H_INCLUDED
+#ifndef LISTADUPLAMENTEENCADEADA_H_INCLUDED
+#define LISTADUPLAMENTEENCADEADA_H_INCLUDED
 
 struct funcionario{
   char nome[100];
 	char cpf[15];
 	float salario;
+  struct funcionario* ant;
   struct funcionario* prox;
 };
 typedef struct funcionario Funcionario;

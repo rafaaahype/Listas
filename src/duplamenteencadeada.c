@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <string.h>
-#include "../bibliotecas/listaEncadeada/listaencadeada.h"
+#include "../bibliotecas/listaDuplamenteEncadeada/listaduplamenteencadeada.h"
 int main(void){
   Funcionario* lista = criar_lista();
 
@@ -13,11 +13,9 @@ int main(void){
     printf("DIGITE O SALARIO DO FUNCIONARIO: ");
     scanf("%f", &func.salario);
     lista = add_lista_ordenado(lista, func);
-
-
   }
   imprime_lista(lista);
   lista = liberar_lista(lista);
-  imprime_lista(lista);
+
   return 0;
 }

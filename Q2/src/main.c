@@ -4,7 +4,7 @@
 
 int main()
 {
-   
+
     Funcionario *lista = criar_lista();
     ListaEstatica listaEst = criar_lista_est();
 
@@ -17,22 +17,26 @@ int main()
 
         switch (opcao)
         {
-      
+
         case 1:
         {
             Funcionario f;
-            printf("Nome:    "); scanf("%s", f.nome);
-            printf("CPF:     "); scanf("%s", f.cpf);
-            printf("Salario: "); scanf("%f", &f.salario);
+            getchar();
+            printf("Nome: ");
+            fgets(f.nome, sizeof(f.nome), stdin);
+            printf("CPF: ");
+            scanf("%s", f.cpf);
+            printf("Salario: ");
+            scanf("%f", &f.salario);
             lista = add_lista_ordenado(lista, f); /* ORIGINAL */
-            add_lista_est(&listaEst, f);         
+            add_lista_est(&listaEst, f);
             break;
         }
         /*ORIGINAL*/
         case 2:
             imprime_lista(lista);
             break;
-    
+
         case 3:
             imprime_lista_est(&listaEst);
             break;
@@ -40,7 +44,8 @@ int main()
         case 4:
         {
             char cpf[15];
-            printf("CPF: "); scanf(" %14s", cpf);
+            printf("CPF: ");
+            scanf(" %14s", cpf);
             Funcionario *encontrado = buscar_funcionario(lista, cpf); /* ORIGINAL */
             if (encontrado)
                 printf("Nome: %s | Salario: R$ %.2f\n",
@@ -49,15 +54,15 @@ int main()
                 printf("Nao encontrado.\n");
             break;
         }
-   
+
         case 5:
-            salvar_csv(lista, "funcionarios_din.csv");      /* ORIGINAL */
-            salvar_csv_est(&listaEst, "funcionarios_est.csv"); 
+            salvar_csv(lista, "funcionarios_din.csv"); /* ORIGINAL */
+            salvar_csv_est(&listaEst, "funcionarios_est.csv");
             break;
-     
+
         case 6:
-            lista = carregar_csv(lista, "funcionarios_din.csv");      /* ORIGINAL */
-            carregar_csv_est(&listaEst, "funcionarios_est.csv");    
+            lista = carregar_csv(lista, "funcionarios_din.csv"); /* ORIGINAL */
+            carregar_csv_est(&listaEst, "funcionarios_est.csv");
             break;
         }
     } while (opcao != 0);

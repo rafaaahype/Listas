@@ -1,11 +1,11 @@
 #include <stdio.h>
-#include "listaencadeada.h"
-#include "listaestatica.h"
+#include "../bibliotecas/listaencadeada.h"
+#include "../bibliotecas/listaestatica.h"
 
 int main()
 {
    
-    Funcionario *lista = criar_lista()
+    Funcionario *lista = criar_lista();
     ListaEstatica listaEst = criar_lista_est();
 
     int opcao;
@@ -36,7 +36,7 @@ int main()
         case 3:
             imprime_lista_est(&listaEst);
             break;
-        /*CÓDIGO ORIGINAL*/
+        /*ORIGINAL*/
         case 4:
         {
             char cpf[15];
@@ -52,12 +52,12 @@ int main()
    
         case 5:
             salvar_csv(lista, "funcionarios_din.csv");      /* ORIGINAL */
-            salvar_csv_est(&listaEst, "funcionarios_est.csv"); /* NOVO */
+            salvar_csv_est(&listaEst, "funcionarios_est.csv"); 
             break;
      
         case 6:
             lista = carregar_csv(lista, "funcionarios_din.csv");      /* ORIGINAL */
-            carregar_csv_est(&listaEst, "funcionarios_est.csv");       /* NOVO */
+            carregar_csv_est(&listaEst, "funcionarios_est.csv");    
             break;
         }
     } while (opcao != 0);

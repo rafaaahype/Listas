@@ -2,5 +2,16 @@
 #define PILHA_H_INCLUDED
 
 #include <stdio.h>
+#include <stdlib.h>
+#define MAX 50
 
-#endif PILHA_H_INCLUDED
+typedef struct pilha Pilha;
+
+Pilha* cria(void);
+void empilhar(Pilha* p, float v);
+float desempilhar(Pilha* p);
+int vazia(Pilha* p);
+void libera(Pilha* p);
+void imprime(Pilha* p);
+
+#endif

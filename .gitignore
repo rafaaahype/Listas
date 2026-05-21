@@ -5,3 +5,5 @@ main
 /output/*
 #ignorando objetos compilados
 *.o
+
+/Q2/*

@@ -6,4 +6,4 @@ main
 #ignorando objetos compilados
 *.o
 
-/Q2/*
+/Q2/* 

@@ -1,7 +1,7 @@
 #ifndef LISTAESTATICA_H
 #define LISTAESTATICA_H
 
-#include "listaencadeada.h" /* retilizando o struct Funcionario */
+#include "listaencadeada.h" /* reutilizando o struct Funcionario */
 
 #define CAPACIDADE 100
 
@@ -19,5 +19,6 @@ int add_lista_est(ListaEstatica *lista, Funcionario f);
 void imprime_lista_est(ListaEstatica *lista);
 void salvar_csv_est(ListaEstatica *lista, const char *arquivo);
 void carregar_csv_est(ListaEstatica *lista, const char *arquivo);
+int remover_est(ListaEstatica *lista, char cpf[15]);
 
 #endif

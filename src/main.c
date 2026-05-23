@@ -1,9 +1,22 @@
-#include "../bibliotecas/pilha.h"
+#include <stdio.h>
+#include "../bibliotecas/calc.h"
 
 int main(void){
-	Pilha* teste = cria();
-	empilhar(teste, 10);
-	imprime(teste);
-	libera(teste);
+	char c;
+	float v;
+	Calc* calc;
+
+	calc = cria_calc("%.2f\n");
+
+	do{
+		scanf(" %c",&c);
+		if(c=='+' || c=='-' || c=='*' || c=='/'){
+			operador(calc,c);
+		}else{
+			ungetc(c,stdin);
+			if(scanf("%f",&v)==1) operando(calc,v);
+		}
+	}while(c!='q');
+	libera_calc(calc);
 	return 0;
 }

@@ -3,13 +3,12 @@
         {
             "name": "Linux",
             "includePath": [
-                "${workspaceFolder}/src/lib/**",
-                "${workspaceFolder}/src/lib/Filas/**"
+                "${workspaceFolder}/**"
             ],
             "defines": [],
-            "compilerPath": "/usr/bin/clang",
+            "compilerPath": "/usr/bin/gcc",
             "cStandard": "c17",
-            "cppStandard": "c++17",
+            "cppStandard": "gnu++17",
             "intelliSenseMode": "linux-clang-x64"
         }
     ],

@@ -1,5 +1,5 @@
-LIB_DIRS = $(wildcard src/lib/*/ src/lib/*/*/)
-CFLAGS = -Ilib $(addprefix -I,$(LIB_DIRS))
+LIB_DIRS = $(wildcard src/libs/*/ src/libs/*/*/)
+CFLAGS = -Ilibs $(addprefix -I,$(LIB_DIRS))
 TARGET = ./output/main
 SRC = $(shell find src -name '*.c')
 

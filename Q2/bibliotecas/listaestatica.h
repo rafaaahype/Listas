@@ -1,7 +1,7 @@
 #ifndef LISTAESTATICA_H
 #define LISTAESTATICA_H
 
-#include "listaencadeada.h" /* reutilizando o struct Funcionario */
+#include "funcionario.h" 
 
 #define CAPACIDADE 100
 

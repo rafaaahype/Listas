@@ -1,26 +1,24 @@
 #ifndef LISTAENCADEADA_H
 #define LISTAENCADEADA_H
 
+#include "funcionario.h"
 #include <string.h>
 
-struct funcionario
-{
-    char nome[100];
-    char cpf[15];
-    float salario;
-    struct funcionario *prox;
+struct no {
+    Funcionario dados;
+    struct no *prox;
 };
-typedef struct funcionario Funcionario;
+typedef struct no No;
 
-Funcionario *criar_lista(void);
-Funcionario *buscar_funcionario(Funcionario *lista, char cpf[15]);
-Funcionario *add_lista(Funcionario *lista, Funcionario funcionario);
-Funcionario *add_lista_ordenado(Funcionario *lista, Funcionario funcionario);
-void imprime_lista(Funcionario *lista);
-int lista_vazia(Funcionario *lista);
-Funcionario *liberar_lista(Funcionario *lista);
-void salvar_csv(Funcionario *lista, const char *arquivo);
-Funcionario *carregar_csv(Funcionario *lista, const char *arquivo);
-Funcionario *remover_funcionario(Funcionario *lista, char cpf[15]);
+No *criar_lista(void);
+No *buscar_funcionario(No *lista, char cpf[15]);
+No *add_lista(No *lista, Funcionario funcionario);
+No *add_lista_ordenado(No *lista, Funcionario funcionario);
+void imprime_lista(No *lista);
+int lista_vazia(No *lista);
+No *liberar_lista(No *lista);
+void salvar_csv(No *lista, const char *arquivo);
+No *carregar_csv(No *lista, const char *arquivo);
+No *remover_funcionario(No *lista, char cpf[15]);
 
 #endif

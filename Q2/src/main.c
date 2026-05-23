@@ -5,7 +5,7 @@
 int main()
 {
 
-    Funcionario *lista = criar_lista();
+    No *lista = criar_lista();
     ListaEstatica listaEst = criar_lista_est();
 
     int opcao;
@@ -24,7 +24,7 @@ int main()
             printf("Nome:    ");
             scanf(" %99[^\n]", f.nome);
             printf("CPF:     ");
-            scanf("%s", f.cpf);
+            scanf("%14s", f.cpf);
             printf("Salario: ");
             scanf("%f", &f.salario);
             lista = add_lista_ordenado(lista, f);
@@ -46,10 +46,10 @@ int main()
             printf("CPF: ");
             scanf(" %14s", cpf);
 
-            Funcionario *encontrado = buscar_funcionario(lista, cpf);
+            No *encontrado = buscar_funcionario(lista, cpf);
             if (encontrado)
                 printf("[Dinamica] Nome: %s | Salario: R$ %.2f\n",
-                       encontrado->nome, encontrado->salario);
+                       encontrado->dados.nome, encontrado->dados.salario);
             else
                 printf("[Dinamica] Nao encontrado.\n");
 

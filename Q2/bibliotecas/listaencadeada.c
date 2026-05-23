@@ -3,53 +3,53 @@
 #include <stdio.h>
 
 /* ORIGINAL*/
-Funcionario *criar_lista(void)
+No *criar_lista(void)
 {
     return NULL;
 }
 
 /* ORIGINAL*/
-Funcionario *buscar_funcionario(Funcionario *lista, char cpf[15])
+No *buscar_funcionario(No *lista, char cpf[15])
 {
-    for (Funcionario *func = lista; func != NULL; func = func->prox)
-        if (strcmp(func->cpf, cpf) == 0)
+    for (No *func = lista; func != NULL; func = func->prox)
+        if (strcmp(func->dados.cpf, cpf) == 0)
             return func;
     return NULL;
 }
 
 /* ORIGINAL*/
-Funcionario *add_lista(Funcionario *lista, Funcionario funcionario)
+No *add_lista(No *lista, Funcionario funcionario)
 {
     if (buscar_funcionario(lista, funcionario.cpf))
         return lista;
 
-    Funcionario *novo = (Funcionario *)malloc(sizeof(Funcionario));
-    strcpy(novo->nome, funcionario.nome);
-    strcpy(novo->cpf, funcionario.cpf);
-    novo->salario = funcionario.salario;
+    No *novo = (No *)malloc(sizeof(No));
+    strcpy(novo->dados.nome, funcionario.nome);
+    strcpy(novo->dados.cpf, funcionario.cpf);
+    novo->dados.salario = funcionario.salario;
     novo->prox = lista;
     return novo;
 }
 
 /* ORIGINAL*/
-Funcionario *add_lista_ordenado(Funcionario *lista, Funcionario funcionario)
+No *add_lista_ordenado(No *lista, Funcionario funcionario)
 {
     if (buscar_funcionario(lista, funcionario.cpf))
         return lista;
 
-    Funcionario *anterior = NULL;
-    Funcionario *atual = lista;
+    No *anterior = NULL;
+    No *atual = lista;
 
-    while (atual != NULL && strcmp(atual->nome, funcionario.nome) < 0)
+    while (atual != NULL && strcmp(atual->dados.nome, funcionario.nome) < 0)
     {
         anterior = atual;
         atual = atual->prox;
     }
 
-    Funcionario *novo = (Funcionario *)malloc(sizeof(Funcionario));
-    strcpy(novo->nome, funcionario.nome);
-    strcpy(novo->cpf, funcionario.cpf);
-    novo->salario = funcionario.salario;
+    No *novo = (No *)malloc(sizeof(No));
+    strcpy(novo->dados.nome, funcionario.nome);
+    strcpy(novo->dados.cpf, funcionario.cpf);
+    novo->dados.salario = funcionario.salario;
     novo->prox = atual;
 
     if (anterior == NULL)
@@ -61,30 +61,30 @@ Funcionario *add_lista_ordenado(Funcionario *lista, Funcionario funcionario)
 }
 
 /* ORIGINAL*/
-void imprime_lista(Funcionario *lista)
+void imprime_lista(No *lista)
 {
     if (lista_vazia(lista))
     {
         puts("Lista vazia.");
         return;
     }
-    for (Funcionario *func = lista; func != NULL; func = func->prox)
+    for (No *func = lista; func != NULL; func = func->prox)
         printf("Nome: %-30s CPF: %-15s Salario: R$ %.2f\n",
-               func->nome, func->cpf, func->salario);
+               func->dados.nome, func->dados.cpf, func->dados.salario);
 }
 
 /* ORIGINAL*/
-int lista_vazia(Funcionario *lista)
+int lista_vazia(No *lista)
 {
     return lista == NULL;
 }
 
 /*ORIGINAL*/
-Funcionario *liberar_lista(Funcionario *lista)
+No *liberar_lista(No *lista)
 {
     while (lista != NULL)
     {
-        Funcionario *proximo = lista->prox;
+        No *proximo = lista->prox;
         free(lista);
         lista = proximo;
     }
@@ -92,7 +92,7 @@ Funcionario *liberar_lista(Funcionario *lista)
 }
 
 /*grava a lista em arquivo CSV*/
-void salvar_csv(Funcionario *lista, const char *arquivo)
+void salvar_csv(No *lista, const char *arquivo)
 {
     FILE *fp = fopen(arquivo, "w");
     if (!fp)
@@ -101,14 +101,14 @@ void salvar_csv(Funcionario *lista, const char *arquivo)
         return;
     }
     fprintf(fp, "nome,cpf,salario\n"); /* cabeçalho */
-    for (Funcionario *func = lista; func != NULL; func = func->prox)
-        fprintf(fp, "%s,%s,%.2f\n", func->nome, func->cpf, func->salario);
+    for (No *func = lista; func != NULL; func = func->prox)
+        fprintf(fp, "%s,%s,%.2f\n", func->dados.nome, func->dados.cpf, func->dados.salario);
     fclose(fp);
     printf("Salvo em %s\n", arquivo);
 }
 
 /* lê o CSV e insere cada linha na lista ordenada*/
-Funcionario *carregar_csv(Funcionario *lista, const char *arquivo)
+No *carregar_csv(No *lista, const char *arquivo)
 {
     FILE *fp = fopen(arquivo, "r");
     if (!fp)
@@ -128,12 +128,12 @@ Funcionario *carregar_csv(Funcionario *lista, const char *arquivo)
     return lista;
 }
 
-Funcionario *remover_funcionario(Funcionario *lista, char cpf[15])
+No *remover_funcionario(No *lista, char cpf[15])
 {
-    Funcionario *anterior = NULL;
-    Funcionario *atual = lista;
+    No *anterior = NULL;
+    No *atual = lista;
 
-    while (atual != NULL && strcmp(atual->cpf, cpf) != 0)
+    while (atual != NULL && strcmp(atual->dados.cpf, cpf) != 0)
     {
         anterior = atual;
         atual = atual->prox;

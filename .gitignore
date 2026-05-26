@@ -5,5 +5,5 @@ main
 /output/*
 #ignorando objetos compilados
 *.o
-
-/Q2/* 
+/.vscode/
+/Q2/*

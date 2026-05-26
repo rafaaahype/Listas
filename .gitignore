@@ -1,0 +1,7 @@
+#ignorando executaveis
+main
+*.out
+*.exe 
+
+#ignorando objetos compilados
+*.o

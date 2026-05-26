@@ -30,7 +30,7 @@ void operador(Calc* c, char op){
 	switch(op){
 		case '+': v = v1+v2; break;
 		case '-': v = v1-v2; break;
-		case '*': v = v1*v2; break; 
+		case '*': v = v1*v2; break;
 		case '/': v = v1/v2; break;
 	}
 

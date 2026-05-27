@@ -334,7 +334,7 @@ void questao3(){
 			case 6:
 				imprime_dinamica(pilha_dinamica);
 			break;
-			case 7: puts("Finalizando execução.");
+			case 7: puts("Finalizando execução."); break;
 			default: puts("Esse comando nao existe");
 		}
 	}while(opcao!=7);
